@@ -79,5 +79,5 @@ def modelo(df):
     print(f'  Clase original: {original_class}')
     print(f'  Clase predicha: {predicted_class}')
 
-df = pd.read_csv('dataset/Dry-Bean-Dataset.csv')
+df = pd.read_csv('TP1-2/src/dataset/Dry-Bean-Dataset.csv')
 modelo(df)
