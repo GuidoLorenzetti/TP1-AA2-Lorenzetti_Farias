@@ -23,17 +23,25 @@ def modelo(df):
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    optimizer = tf.keras.optimizers.Adam(learning_rate=0.005)
+    optimizer = tf.keras.optimizers.Adam(learning_rate=0.05)
   
     model = tf.keras.Sequential([
     tf.keras.layers.Input(shape=(5,)),
     tf.keras.layers.Dense(units=3, activation = 'sigmoid'),
     tf.keras.layers.Dense(units=1, activation='linear')])
     
-    model.compile(optimizer=optimizer, loss='mse')
-
-    model.fit(X_train_scaled, y_train, epochs=20, batch_size=32, validation_split=0.2)
+    model.compile(optimizer=optimizer, loss='mse', metrics= ['accuracy'])
     
+    history = model.fit(X_train_scaled, y_train, epochs=20, batch_size=32, validation_split= 0.2)
+    
+    plt.plot(history.history['loss'], label='loss')
+    plt.plot(history.history['val_loss'], label='val_loss')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.show()
+
+    # Evaluar el modelo en los datos de prueba
     loss = model.evaluate(X_test, y_test)
 
     print("Pérdida en los datos de prueba:", loss)

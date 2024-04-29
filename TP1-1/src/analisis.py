@@ -23,10 +23,10 @@ def info(df):
     print(df.head())
     print(df.describe())
     print(df.info())
-    print(df.shape)
+    print(f'Shape: {df.shape}')
 
     vacios_original=df.isna().sum()
-    print(f"Datos vacíos: {vacios_original}")
+    print(f"Datos vacíos:\n{vacios_original}")
 
 def plot_variables(df):
     sns.set(style="darkgrid")
